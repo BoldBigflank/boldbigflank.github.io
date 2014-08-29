@@ -19,7 +19,7 @@ tags: []
 comments: []
 ---
 <div class="well text-center">
-Music for all games created by <a href="https://soundcloud.com/obnoxycontin">Robby Jarstad<br />
+Music for all games created by <a href="https://soundcloud.com/obnoxycontin">Robby Jarstad</a><br />
 <img width=100px height=100px src="https://i1.sndcdn.com/avatars-000087504689-bbn9j4-t200x200.jpg?30a2558"></img></a>
 </div class="well">
 <div class="row">
