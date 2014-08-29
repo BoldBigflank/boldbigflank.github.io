@@ -1,0 +1,228 @@
+---
+layout: post
+status: publish
+published: true
+title: I Do Voices - Simultaneous Catch Phrase via SMS
+author:
+  display_name: alex
+  login: alex
+  email: alex@bold-it.com
+  url: ''
+author_login: alex
+author_email: alex@bold-it.com
+wordpress_id: 109
+wordpress_url: http://www.bold-it.com/wordpress/?p=109
+date: '2012-04-29 07:26:46 -0700'
+date_gmt: '2012-04-29 07:26:46 -0700'
+categories:
+- Python
+- Twilio
+- Game
+tags: []
+comments: []
+---
+<p>This is an old one I did using Python (in Google App Engine).  When you opt in by sending "Play" to the Twilio number, you are given a name of a person.  You want to do everything you can to get others to guess this person, besides saying their name.  Those who have played Catch Phrase will understand this concept.  The goal of this game is to get the most points.  You gain points by both guessing people (10) and by being guessed (20).  Text "pass" to chance your character; text "reset" to reset the game.  The first person to 200 points wins.</p>
+<p>Here's the initial setup for this GAE project.<br />
+[python title="app.yaml"]<br />
+application: idovoices<br />
+version: 1<br />
+runtime: python<br />
+api_version: 1</p>
+<p>handlers:<br />
+- url: /sms<br />
+  script: sms.py<br />
+[/python]</p>
+<p>When guesses are made, they are given a little bit of leniency, allowing people to guess spellings of names, and if its close enough still give them the points.  This comparison is called the Levenshtein Distance.<br />
+[python title="levenshtein.py"]<br />
+def levenshtein(s1, s2):<br />
+    if len(s1) &lt; len(s2):<br />
+        return levenshtein(s2, s1)<br />
+    if not s1:<br />
+        return len(s2)</p>
+<p>    previous_row = xrange(len(s2) + 1)<br />
+    for i, c1 in enumerate(s1):<br />
+        current_row = [i + 1]<br />
+        for j, c2 in enumerate(s2):<br />
+            insertions = previous_row[j + 1] + 1 # j+1 instead of j since previous_row and current_row are one character longer<br />
+            deletions = current_row[j] + 1       # than s2<br />
+            substitutions = previous_row[j] + (c1 != c2)<br />
+            current_row.append(min(insertions, deletions, substitutions))<br />
+        previous_row = current_row</p>
+<p>    return previous_row[-1]<br />
+[/python]</p>
+<p>This is probably my most complex GAE project, which stores both word and user models in the appengine db.  They keep track of people's scores and how often a word is used.</p>
+<p>[python title="User.py"]<br />
+from google.appengine.ext import db</p>
+<p>class User(db.Model):<br />
+    number = db.PhoneNumberProperty()<br />
+    score = db.IntegerProperty(default=0)<br />
+    word = db.StringProperty(verbose_name=None, multiline=False)<br />
+[/python]<br />
+[python title="Word.py"]<br />
+from google.appengine.ext import db</p>
+<p>class Word(db.Model):<br />
+    name = db.StringProperty(verbose_name=None, multiline=False)<br />
+    lastUse = db.DateTimeProperty(auto_now=True)<br />
+[/python]</p>
+<p>When the system receives text messages, they are handled by sms.py.  This file loads a bunch of others, including Word and User.  It also imports the <a href="https://github.com/BoldBigflank/idovoices/blob/master/twilio.py">twilio</a> library for sending texts, and <a href="https://github.com/BoldBigflank/idovoices/blob/master/words.py">words.py</a> for generating names to assign to users.</p>
+<p>[python title="sms.py"]<br />
+#!/usr/bin/env python<br />
+#<br />
+# Copyright 2007 Google Inc.<br />
+#<br />
+# Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);<br />
+# you may not use this file except in compliance with the License.<br />
+# You may obtain a copy of the License at<br />
+#<br />
+#     http://www.apache.org/licenses/LICENSE-2.0<br />
+#<br />
+# Unless required by applicable law or agreed to in writing, software<br />
+# distributed under the License is distributed on an &quot;AS IS&quot; BASIS,<br />
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.<br />
+# See the License for the specific language governing permissions and<br />
+# limitations under the License.<br />
+#<br />
+import logging<br />
+import re</p>
+<p>from google.appengine.ext import webapp<br />
+from google.appengine.ext.webapp import util<br />
+from google.appengine.ext import db<br />
+from words import getWords<br />
+import twilio<br />
+import User<br />
+import Word<br />
+from levenshtein import levenshtein</p>
+<p>GUESS_THRESHOLD = 3<br />
+CORRECT_GUESS = 10<br />
+NAME_GUESSED = 20<br />
+MAX_SCORE = 200</p>
+<p>class MainHandler(webapp.RequestHandler):<br />
+    def get(self):<br />
+        self.response.out.write('Hello sms!&lt;br&gt;')<br />
+        query = self.request.query_string<br />
+        self.response.out.write(&quot;GET Query: &quot; + query + &quot;&lt;br&gt;&quot;)<br />
+        self.response.out.write(&quot;GET Body: &quot; + self.request.body + &quot;&lt;br&gt;&quot;)<br />
+        return</p>
+<p>    def post(self):<br />
+        phoneNumber = self.request.get(&quot;From&quot;, &quot;NONUMBER&quot;)<br />
+        body = self.request.get(&quot;Body&quot;, &quot;NOBODY&quot;)</p>
+<p>        argumentsList = self.request.arguments()</p>
+<p>        for argument in argumentsList:<br />
+            logging.info(&quot;arg &quot; + argument + &quot; &quot; + self.request.get(argument) + &quot;n&quot;)</p>
+<p>        logging.info(&quot;Body: &quot; + body + &quot;n&quot;)</p>
+<p>        # New player<br />
+        if(body.lower()==&quot;play&quot;):<br />
+            logging.info(&quot;addNumber:  &quot; + phoneNumber) # Debug purposes<br />
+            newNumber(phoneNumber)</p>
+<p>            sendText(&quot;Welcome!  Your first character is: &quot; + assignNextName(phoneNumber), self)<br />
+            return</p>
+<p>        # PASS<br />
+        if(body.lower()==&quot;pass&quot;):<br />
+            logging.info(&quot;phoneNumber:  &quot; + phoneNumber) # Debug purposes</p>
+<p>            sendText(&quot;Skipped! Next character: &quot; + assignNextName(phoneNumber), self)<br />
+            return</p>
+<p>        # RESET<br />
+        if(body.lower()==&quot;reset&quot;):<br />
+            logging.info(&quot;reset:  &quot; + phoneNumber) # Debug purposes<br />
+            resetGame()<br />
+            sendText(&quot;Game reset&quot;, self)<br />
+            return</p>
+<p>        # NAME<br />
+        submitGuess(phoneNumber, body, self)</p>
+<p>def newNumber(phoneNumber):<br />
+    logging.info(&quot;New number: &quot; + phoneNumber)<br />
+    user = User.User(number = phoneNumber, score=0)</p>
+<p>    deleteNumber(phoneNumber)<br />
+    user.put()<br />
+    return user</p>
+<p>def assignNextName(phoneNumber):<br />
+    # Search the database for the next item<br />
+    nextWord = Word.Word.gql(&quot;ORDER BY lastUse ASC LIMIT 1&quot;)</p>
+<p>    # if the database is empty, rerun the immport<br />
+    if(nextWord.count()==0):<br />
+        importWords()<br />
+        nextWord = Word.Word.gql(&quot;ORDER BY lastUse ASC LIMIT 1&quot;)<br />
+    nextName = nextWord[0].name<br />
+    nextWord[0].put() #touch the object to reset the timestamp<br />
+    # Update the User object for number<br />
+    user = getUser(phoneNumber)<br />
+    user.word = nextName<br />
+    user.put()<br />
+    # Return the string<br />
+    return nextName</p>
+<p>def deleteNumber(phoneNumber):<br />
+    logging.info(&quot;Delete number: &quot; + phoneNumber)<br />
+    previousUser = getUser(phoneNumber)<br />
+    if(previousUser):<br />
+        previousUser.delete()</p>
+<p>def getUser(phoneNumber):<br />
+    storedUsers = User.User.gql(&quot;WHERE number = :1&quot;, phoneNumber)<br />
+    if(storedUsers.count()!=0):<br />
+        return storedUsers[0]<br />
+    else:<br />
+        return 0</p>
+<p>def submitGuess(phoneNumber, guess, self):<br />
+    currentPlayers = User.User.gql(&quot;&quot;)<br />
+    # for each current person in the db<br />
+    logging.info(&quot;Guess is &quot; + guess)<br />
+    for player in currentPlayers:<br />
+        logging.info(&quot;player number &quot; + str(player.number))<br />
+        if(player.number == phoneNumber or not player.word):<br />
+            continue<br />
+        distance = levenshtein(guess.lower(), player.word.lower())<br />
+        logging.info(&quot;distance: &quot; + str(distance))<br />
+        if(distance &lt;= GUESS_THRESHOLD):<br />
+            r = twilio.Response()<br />
+            # Award points<br />
+            guesserScore = addPoints(phoneNumber, CORRECT_GUESS)</p>
+<p>            guesserMessage = &quot;You guessed &quot; + player.word + &quot; correct! Your score is now &quot;+ str(guesserScore) + &quot;.&quot;<br />
+            if(guesserScore &gt;= MAX_SCORE):<br />
+                guesserMessage += &quot; You win!&quot;<br />
+            r.addSms(guesserMessage, to=phoneNumber)</p>
+<p>            guessedScore = addPoints(player.number, NAME_GUESSED)<br />
+            guessedMessage = &quot;You were guessed!  Score: &quot; + str(guessedScore) + &quot;.&quot;<br />
+            if(guessedScore &gt;= MAX_SCORE):<br />
+                guessedMessage += &quot; You win!&quot;<br />
+            else:<br />
+                guessedMessage += &quot; Next: &quot; + assignNextName(player.number)<br />
+            r.addSms(guessedMessage, to=player.number)<br />
+            self.response.out.write(r)<br />
+            if(guesserScore &gt;= MAX_SCORE or guessedScore &gt;= MAX_SCORE):<br />
+                resetGame()<br />
+            return player.word</p>
+<p>def addPoints(phoneNumber, amount):<br />
+    # Update the User object for number<br />
+    user = getUser(phoneNumber)<br />
+    if(user==0):<br />
+        user = newNumber(phoneNumber)<br />
+    user.score += amount<br />
+    user.put()</p>
+<p>    # Return the string<br />
+    return user.score</p>
+<p>def sendText(message, self):<br />
+    r = twilio.Response()<br />
+    r.addSms(message)<br />
+    self.response.out.write(r)</p>
+<p>def importWords():<br />
+    for word in getWords():<br />
+        dbWord = Word.Word()<br />
+        dbWord.name = word<br />
+        dbWord.put()</p>
+<p>def resetGame():<br />
+    logging.info(&quot;resetting!&quot;)<br />
+    db.delete(User.User.gql(&quot;&quot;))</p>
+<p>def main():<br />
+    application = webapp.WSGIApplication([('/sms', MainHandler)],<br />
+                                         debug=True)<br />
+    util.run_wsgi_app(application)</p>
+<p>if __name__ == '__main__':<br />
+    main()<br />
+[/python]</p>
+<p>To try it out, </p>
+<ol>
+<li>clone the project on <a href="https://github.com/BoldBigflank/idovoices" target="_blank">Github</a>, modify the app.yaml application to your own.</li>
+<li>Use Google App Engine to deploy the project.</li>
+<li>Set a Twilio phone number's SMS to POST to /sms on your project URL.</li>
+<li>Text "play" to your Twilio number.</li>
+<li>Text your guesses to the same number.</li>
+</ol>

@@ -1,0 +1,89 @@
+---
+layout: post
+status: publish
+published: true
+title: 1-888-PIG-WTHR
+author:
+  display_name: alex
+  login: alex
+  email: alex@bold-it.com
+  url: ''
+author_login: alex
+author_email: alex@bold-it.com
+wordpress_id: 21
+wordpress_url: http://dev.bold-it.com/wordpress/?p=21
+date: '2012-04-23 22:34:40 -0700'
+date_gmt: '2012-04-23 22:34:40 -0700'
+categories:
+- PHP
+- Twilio
+tags: []
+comments:
+- id: 4
+  author: WeatherGram Takes Prize in the @WeatherAPI &amp; Twilio Developer Contest
+  author_email: ''
+  author_url: http://www.twilio.com/tblog/2012/05/weathergram-takes-top-prize-in-the-weatherapi-twilio-developer-contest.html
+  date: '2012-05-30 10:22:46 -0700'
+  date_gmt: '2012-05-30 18:22:46 -0700'
+  content: '[...] Alex Swan created a video tutorial below if you’d like to build
+    your own, and a great ‘How To’ blog post here. Make sure to follow this DOer [...]'
+---
+<p>I made this program for the Twilio+Wunderground Contest.  I picked a toll-free number with WTHR in it, and later realized the first 3 numbers spelled PIG.  Shortly thereafter, I realized the destined purpose of this phone number.</p>
+<p>
+Try it here:<br />
+[wp_click2client id="AP7c21b53c43e8bb46ecdbf698da7199b3" digits=TRUE]</p>
+<p>
+The code to handle the phone call is pretty simple.  First, we set constants and get information from the call.<br />
+[php title="voice.php"]<br />
+&lt;?php<br />
+$KEY = &quot;&quot;; // Weather Underground API Key<br />
+$FromZip = isset($_GET['FromZip']) ? $_GET['FromZip'] : &quot;84606&quot;;<br />
+if(isset($_GET['Digits']) &amp;&amp; strlen($_GET['Digits'])==5) $FromZip = $_GET['Digits'];<br />
+[/php]</p>
+<p>Next, using the zip code we gathered, we get the forecast from Wunderground as json. We are going to use the current conditions, the location, and the short description of the forecast for each time period.</p>
+<p>[php]<br />
+// Take the zip code, get the forecast<br />
+$json_string = file_get_contents(&quot;http://api.wunderground.com/api/$KEY/conditions/forecast/q/$FromZip.json&quot;);<br />
+$parsed_json = json_decode($json_string, TRUE);<br />
+$current_observation = $parsed_json['current_observation'];<br />
+$location = $current_observation['display_location'];<br />
+$txt_forecast = $parsed_json['forecast']['txt_forecast'];<br />
+[/php]</p>
+<p>We are now ready to write some TwiML using the information we received.  We are going to translate everything that is spoken to Pig Latin.</p>
+<p>[php]<br />
+// Tell Twilio what to do for the caller<br />
+print &quot;&lt;Response&gt;n&quot;;<br />
+print &quot;&lt;Gather method='GET' numDigits='5'&gt;n&quot;;<br />
+print &quot;&lt;Say voice='woman'&gt;&quot; . translate(&quot;Weather for &quot; . $location['city'] . &quot; &quot; . $location['state_name']) . &quot;.&lt;/Say&gt;n&quot;;<br />
+print &quot;&lt;Say voice='woman'&gt;&quot; . translate(&quot;For a different location, enter a zip code.&quot;) . &quot;&lt;/Say&gt;n&quot;;<br />
+print &quot;&lt;Say voice='woman'&gt;&quot; . translate(&quot;It is currently &quot; . $current_observation['weather'] . &quot; at &quot; . $current_observation['temp_f'] . &quot; degrees fahrenheit.&quot;) . &quot;&lt;/Say&gt;n&quot;;<br />
+foreach($txt_forecast['forecastday'] as $day){<br />
+	print &quot;&lt;Say voice='woman'&gt;&quot; . translate($day['title'] . &quot; : &quot; . $day['fcttext']) . &quot;&lt;/Say&gt;n&quot;;<br />
+}<br />
+print &quot;&lt;/Gather&gt;n&quot;;<br />
+print &quot;&lt;/Response&gt;&quot;;<br />
+[/php]</p>
+<p>The last part is the function we used to translate things to Pig Latin.  It's not foolproof, but it will do.</p>
+<p>[code language="php"]<br />
+function translate($message){<br />
+	$result = &quot;&quot;;<br />
+	foreach(explode(&quot; &quot;, $message) as $word){<br />
+		// If it's a small word, don't translate<br />
+		if(strlen($word) &lt;= 2){<br />
+			$result .= &quot;$word, &quot;;<br />
+			continue;<br />
+		}<br />
+		// Find the first vowel<br />
+		preg_match(&quot;/^(.*?)([AEIOUaeiou]w*)W*$/&quot;, $word, $matches);<br />
+		if(count($matches)&gt;0)<br />
+			$result .= $matches[2] .  $matches[1] . &quot;ay, &quot;;<br />
+		else $result .= &quot;$word &quot;;<br />
+	}<br />
+	return $result;<br />
+}<br />
+?&gt;<br />
+[/code]</p>
+<p>
+Here is a screencast of what it does and how it's made:</p>
+<p><iframe src="http://www.youtube.com/embed/Zf88WfGvBzM" frameborder="0" width="420" height="315"></iframe></p>
+<p>Try it out!  Call 1-888-PIG-WTHR to hear your local conditions and forecast in Pig Latin.</p>
