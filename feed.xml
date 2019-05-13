@@ -1,30 +1,288 @@
----
-layout: null
----
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>{{ site.title | xml_escape }}</title>
-    <description>{{ site.description | xml_escape }}</description>
-    <link>{{ site.url }}{{ site.baseurl }}/</link>
-    <atom:link href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" rel="self" type="application/rss+xml" />
-    <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
-    <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
-    <generator>Jekyll v{{ jekyll.version }}</generator>
-    {% for post in site.posts limit:10 %}
+    <title>Node.js, PHP and Python Programming Examples by Alex Swan</title>
+    <description>Alex Swan is a full stack developer currently working at NBCUniversal.  He also makes mobile and console games and has a hamster.
+</description>
+    <link>http://www.bold-it.com/</link>
+    <atom:link href="http://www.bold-it.com/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Thu, 15 Oct 2015 14:34:34 -0700</pubDate>
+    <lastBuildDate>Thu, 15 Oct 2015 14:34:34 -0700</lastBuildDate>
+    <generator>Jekyll v2.5.3</generator>
+    
       <item>
-        <title>{{ post.title | xml_escape }}</title>
-        <description>{{ post.content | xml_escape }}</description>
-        <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
-        <link>{{ post.url | prepend: site.baseurl | prepend: site.url }}</link>
-        <guid isPermaLink="true">{{ post.url | prepend: site.baseurl | prepend: site.url }}</guid>
-        {% for tag in post.tags %}
-        <category>{{ tag | xml_escape }}</category>
-        {% endfor %}
-        {% for cat in post.categories %}
-        <category>{{ cat | xml_escape }}</category>
-        {% endfor %}
+        <title>Hamster Fitness Tracker</title>
+        <description>&lt;p&gt;Using a couple sensors and a &lt;a href=&quot;http://www.particle.io&quot;&gt;Particle.io&lt;/a&gt; Photon, I made a &lt;a href=&quot;http://www.bold-it.com/hamster/&quot;&gt;hamster tracking system&lt;/a&gt; with a pretty front end for anyone to check up on.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-sensor&quot;&gt;The Sensor&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.particle.io&quot;&gt;Particle.io&lt;/a&gt; makes a tiny wifi-connected chip that makes it easy to have your data available instantly in the Cloud.
+Using the Particle Shield Shield and a Grove Starter Kit shield, I connected temperature sensor and a magnet sensor to my Particle Photon.  I put two magnets on the wheel to interact with the sensor.  &lt;/p&gt;
+
+&lt;h2 id=&quot;the-code&quot;&gt;The Code&lt;/h2&gt;
+&lt;p&gt;I created a &lt;a href=&quot;https://www.youtube.com/watch?v=ZqLgxPcELhg&quot;&gt;screencast&lt;/a&gt; of how to set up your own hamster tracker.  This video explains how to use Particle’s websocket publishing command as well as open device variables to the Cloud.&lt;/p&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/ZqLgxPcELhg&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Data is useless without some way to visualize it, so I’ve also taught how to use &lt;a href=&quot;http://keen.io&quot;&gt;Keen.io&lt;/a&gt; to upload your data for easy querying.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-site&quot;&gt;The Site&lt;/h2&gt;
+&lt;p&gt;Using Keen.io’s templates and a few interesting queries, I’ve created a Jekyll site that displays the hamster’s recent running history.  Particle.io’s code lets me receive live temperature and speed/distance data as well.
+See the &lt;a href=&quot;http://www.bold-it.com/hamster/&quot;&gt;website&lt;/a&gt; and the &lt;a href=&quot;https://github.com/BoldBigflank/hamster&quot;&gt;GitHub source code&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/medialibrary/hamster-site.png&quot; alt=&quot;Hamster Tracker&quot; title=&quot;Jessica&quot; /&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 12 Aug 2015 18:03:41 -0700</pubDate>
+        <link>http://www.bold-it.com/arduino/javascript/hamster-fitness-tracker/</link>
+        <guid isPermaLink="true">http://www.bold-it.com/arduino/javascript/hamster-fitness-tracker/</guid>
+        
+        
+        <category>arduino</category>
+        
+        <category>javascript</category>
+        
       </item>
-    {% endfor %}
+    
+      <item>
+        <title>Global Game Jam 2015 - Robots vs. Humans</title>
+        <description>&lt;p&gt;I created a Node.js server to host a &lt;a href=&quot;http://globalgamejam.org/2015/games/save-our-ship&quot;&gt;party game with no set name&lt;/a&gt;.  I joined thousands of other developers to make games in a 48 hour window.  My team created &lt;a href=&quot;http://globalgamejam.org/2015/games/save-our-ship&quot;&gt;this game&lt;/a&gt; that fit the theme “What do we do now?”.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to-play&quot;&gt;How to Play&lt;/h2&gt;
+&lt;p&gt;Using your smartphone or tablet as a controller, log in at the &lt;a href=&quot;http://louiscarl.github.io/betrayal/&quot;&gt;website&lt;/a&gt;
+When everyone has joined, start the game
+Each round, you are given a role.  Choose who to target based on your given role before the timer runs out.
+Note: Most roles cannot perform their action if they are killed.
+Each role will perform a different action, and you succeed each round based on different criteria
+First to a set number of points wins&lt;/p&gt;
+
+&lt;h2 id=&quot;the-roles&quot;&gt;The Roles&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/medialibrary/ggj-roles.jpg&quot; alt=&quot;Roles&quot; title=&quot;Roles&quot; /&gt;  &lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ROBOT: KILL A HUMAN  &lt;/li&gt;
+  &lt;li&gt;ROBO-MINION: ASSOCIATE WITH ANOTHER ACTIVATED ROBOT  &lt;/li&gt;
+  &lt;li&gt;ROBO-RPG: BLOW UP YOURSELF AND PLAYER, SUCCEED IF IT’S A HUMAN  &lt;/li&gt;
+  &lt;li&gt;CHILD: HUG A LIVE HUMAN  &lt;/li&gt;
+  &lt;li&gt;REBEL: KILL A PLAYER AND STAY ALIVE  &lt;/li&gt;
+  &lt;li&gt;SNAKE: DIE, THEN KILL THE PLAYER WHO KILLED YOU  &lt;/li&gt;
+  &lt;li&gt;TWIN: FIND YOUR TWIN (THEY CAN ALSO FIND YOU)  &lt;/li&gt;
+  &lt;li&gt;MECHANIC: DISABLE A LIVE ROBOT (GIVE THAT ROBOT A POINT)  &lt;/li&gt;
+  &lt;li&gt;GUARDIAN: PROTECT SOMEONE BEFORE THEY ARE ELIMINATE  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;tech-stack&quot;&gt;Tech stack&lt;/h2&gt;
+&lt;p&gt;The server was created with &lt;a href=&quot;http://www.nodejs.org&quot;&gt;Node.js&lt;/a&gt; and &lt;a href=&quot;http://socket.io&quot;&gt;Socket.io&lt;/a&gt; and hosted on &lt;a href=&quot;http://www.heroku.com&quot;&gt;Heroku&lt;/a&gt;&lt;br /&gt;
+The front end was made with &lt;a href=&quot;http://angularjs.org&quot;&gt;AngularJS&lt;/a&gt; and hosted on &lt;a href=&quot;https://github.com/louiscarl/PhoneBetrayal&quot;&gt;GitHub&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;credits&quot;&gt;Credits&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.twitter.com/BoldBigflank&quot;&gt;Alex Swan&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://twitter.com/pat_of_kemp&quot;&gt;Pat Kemp&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Louis Pepin&lt;/li&gt;
+  &lt;li&gt;Justin Nafziger&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Thu, 29 Jan 2015 11:03:41 -0800</pubDate>
+        <link>http://www.bold-it.com/javascript/socket.io/node.js/global-game-jam-2015/</link>
+        <guid isPermaLink="true">http://www.bold-it.com/javascript/socket.io/node.js/global-game-jam-2015/</guid>
+        
+        
+        <category>javascript</category>
+        
+        <category>socket.io</category>
+        
+        <category>node.js</category>
+        
+      </item>
+    
+      <item>
+        <title>Twilio Client - Jekyll Liquid Tag</title>
+        <description>&lt;p&gt;In updating my site to Jekyll, I needed to have Twilio Client support for my &lt;a href=&quot;/php/twilio/wordpress/twilio-client-wordpress/&quot;&gt;demos&lt;/a&gt;. I had already made a Wordpress Plugin, so it was a quick conversion to make a Twilio Client Liquid Tag.  I also got an up to date version of Twilio Client running as well, to take advantage of the WebRTC functionality.&lt;/p&gt;
+
+&lt;p&gt;First add the required libraries to your head tag:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;//static.twilio.com/libs/twiliojs/1.2/twilio.min.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/script&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Then wherever you want to use Twilio Client place this tag:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;% twilio_client &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;sid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;APXXXXXXXXXXXXXXXXXXXXXX&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;caption&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;call&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;digits&lt;/span&gt; &lt;span class=&quot;sx&quot;&gt;%&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Save this file to your ‘_plugins’ directory, or create the directory in the root of your site:
+&lt;script src=&quot;https://gist.github.com/BoldBigflank/929e0916be491c6c8876.js&quot;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;Feel free to send a pull request if you see ways to optimize.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 13 Jan 2015 19:51:56 -0800</pubDate>
+        <link>http://www.bold-it.com/twilio/ruby/2015/01/13/twilio-client-jekyll-tag.html</link>
+        <guid isPermaLink="true">http://www.bold-it.com/twilio/ruby/2015/01/13/twilio-client-jekyll-tag.html</guid>
+        
+        
+        <category>twilio</category>
+        
+        <category>ruby</category>
+        
+      </item>
+    
+      <item>
+        <title>Portable Peanut Gallery - AngelHack Seattle 2014</title>
+        <description>&lt;p&gt;Using Echoprint technology, I made a system to listen to what movie is playing and then automatically synchronize my Rifftrax audio files to the movie.  &lt;a href=&quot;http://www.hackathon.io/portable1&quot; target=&quot;_blank&quot;&gt;This was my entry&lt;/a&gt; into AngelHack Seattle Spring 2014&lt;br /&gt;
+&lt;a href=&quot;/medialibrary/2014-05-17-16.00.57.jpg&quot;&gt;&lt;img src=&quot;/medialibrary/2014-05-17-16.00.57.jpg&quot; alt=&quot;AngelHack SEA 2014&quot; class=&quot;aligncenter size-full wp-image-455&quot; /&gt;&lt;/a&gt;&lt;br /&gt;
+There are a few parts to this system.  First, I took a couple movie files and ran them through &lt;a href=&quot;https://github.com/echonest/echoprint-codegen&quot; target=&quot;_blank&quot;&gt;Echoprint-codegen&lt;/a&gt;, and stored that in an Amazon RDS instance.  I used &lt;a href=&quot;https://github.com/jhurliman/node-echoprint-server&quot; target=&quot;_blank&quot;&gt;node-echoprint-server&lt;/a&gt; and modified it to include rifftrax-specific synchronizing information.  Then, I modified the &lt;a href=&quot;https://github.com/echonest/echoprint-ios-sample&quot; target=&quot;_blank&quot;&gt;echoprint-ios-sample&lt;/a&gt; app to play the proper rifftrax file at the correct time.&lt;/p&gt;
+&lt;p&gt;&lt;iframe width=&quot;640&quot; height=&quot;360&quot; src=&quot;//www.youtube.com/embed/IbxblRfMIsg?rel=0&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/p&gt;
+&lt;p&gt;If you can&#39;t tell, the phrase &quot;...every couch cushion.&quot; was the app&#39;s addition to the movie.&lt;/p&gt;
+&lt;p&gt;I&#39;m really excited about this technology, and I plan to keep working on this product until it&#39;s ready for production.  There are many ways to improve this technology for this particular use case.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 19 May 2014 20:51:56 -0700</pubDate>
+        <link>http://www.bold-it.com/ios/node.js/portable-peanut-gallery-angelhack-seattle-2014/</link>
+        <guid isPermaLink="true">http://www.bold-it.com/ios/node.js/portable-peanut-gallery-angelhack-seattle-2014/</guid>
+        
+        
+        <category>ios</category>
+        
+        <category>node.js</category>
+        
+      </item>
+    
+      <item>
+        <title>1-855-TO-A-BEE-G</title>
+        <description>&lt;p&gt;Using Twilio and Echonest Remix.js, I made a phone number that plays a song with bee accompaniment. &lt;/p&gt;
+&lt;p&gt;For the &lt;a href=&quot;http://developerboards.att.lithium.com/t5/AT-T-Developer-Program-Blogs/AT-amp-T-Mobile-App-Hackathon-Bee-Conservation-Seattle-Event/ba-p/38238&quot; target=&quot;_blank&quot;&gt;AT&amp;amp;T Mobile App Hackathon - Bee Conservation&lt;/a&gt; event, I created a silly phone line that plays Bee Gees feat. Bees.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/medialibrary/2014-05-10-20.22.22.jpg&quot;&gt;&lt;img src=&quot;/medialibrary/2014-05-10-20.22.22.jpg&quot; alt=&quot;2014-05-10 20.22.22&quot; class=&quot;aligncenter size-full wp-image-447&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Call 1-855-TO-A-BEE-G or click&lt;br /&gt;
+&lt;?php wp_c2client(&quot;AP81866b364a63409f2bcd87b78dab8229&quot;, &quot;Bee Gees feat. Bees&quot;); ?&gt;&lt;/p&gt;
+</description>
+        <pubDate>Mon, 19 May 2014 20:37:22 -0700</pubDate>
+        <link>http://www.bold-it.com/twilio/1-855-bee-g/</link>
+        <guid isPermaLink="true">http://www.bold-it.com/twilio/1-855-bee-g/</guid>
+        
+        
+        <category>twilio</category>
+        
+      </item>
+    
+      <item>
+        <title>Ludum Dare 29 - Bed Bug Hunt</title>
+        <description>&lt;p&gt;&lt;img src=&quot;http://www.ludumdare.com/compo/wp-content/compo2/thumb/7b21214e6629df38f1d7ee5d1954a73d.jpg&quot; alt=&quot;Screenshot of Bed Bug Hunt&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Using Unity3d, I created a simple game to fit the theme &quot;Beneath the Surface&quot;.  It was an experiment involving moving individual vertexes of a mesh.&lt;/p&gt;
+&lt;p&gt;This was made as &lt;a href=&quot;http://www.ludumdare.com/compo/ludum-dare-29/?action=preview&amp;amp;uid=35325&quot;&gt;my entry&lt;/a&gt; into Ludum Dare 29.  The game is very simple, objects below the stripes are moving around and your task is to poke them.  I created this by attaching rigidbodies and spring joints to every vertex of the stripe object.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://dev.bold-it.com/bedbughunt/&quot;&gt;Play the Game&lt;/a&gt; or check out the &lt;a href=&quot;https://github.com/BoldBigflank/ld29-bedbughunt&quot; target=&quot;_blank&quot;&gt;source code&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Mon, 19 May 2014 20:22:16 -0700</pubDate>
+        <link>http://www.bold-it.com/ios/box2d/game/unity3d/ludum-dare-29-bed-bug-hunt/</link>
+        <guid isPermaLink="true">http://www.bold-it.com/ios/box2d/game/unity3d/ludum-dare-29-bed-bug-hunt/</guid>
+        
+        
+        <category>ios</category>
+        
+        <category>box2d</category>
+        
+        <category>game</category>
+        
+        <category>unity3d</category>
+        
+      </item>
+    
+      <item>
+        <title>138 - The Polyhedron-based Infinite Runner </title>
+        <description>&lt;p&gt;&lt;iframe width=&quot;480&quot; height=&quot;360&quot; src=&quot;//www.youtube.com/embed/sJYXTYaWGgs?rel=0&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/medialibrary/Screen-Shot-2014-03-03-at-10.07.21-PM.png&quot;&gt;&lt;img src=&quot;/medialibrary/Screen-Shot-2014-03-03-at-10.07.21-PM.png&quot; alt=&quot;An in-game shot of 138&quot; class=&quot;alignleft size-full wp-image-433&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;My game for February is called 138.  Move the shape to avoid the edges as they grow around you.&lt;/p&gt;
+&lt;p&gt;Currently available &lt;a href=&quot;dev.bold-it.com/138/138.html&quot; title=&quot;138&quot;&gt;on the web&lt;/a&gt;.  &lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://itunes.apple.com/us/app/138/id835429050?ls=1&amp;amp;mt=8&quot; target=&quot;_blank&quot;&gt;iOS App Store&lt;/a&gt; &lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://play.google.com/store/apps/details?id=com.alexboldit.onethreeeight&quot; target=&quot;_blank&quot;&gt;Google Play&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.amazon.com/dp/B00ITCDB0C/ref=cm_sw_r_tw_dp_.z3itb18E6FJD&quot; target=&quot;_blank&quot;&gt;Amazon App Store&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Tue, 04 Mar 2014 06:11:02 -0800</pubDate>
+        <link>http://www.bold-it.com/ios/game/unity3d/138-polyhedron-based-infinite-runner/</link>
+        <guid isPermaLink="true">http://www.bold-it.com/ios/game/unity3d/138-polyhedron-based-infinite-runner/</guid>
+        
+        
+        <category>ios</category>
+        
+        <category>game</category>
+        
+        <category>unity3d</category>
+        
+      </item>
+    
+      <item>
+        <title>Spheroid Cyclone</title>
+        <description>&lt;p&gt;My game for the month of January is Spheroid Cyclone, an endless runner made with Unity.  Tap the left and right halves of the screen to rotate around the cylinder and avoid obstacles in a race for the top of the leaderboard.&lt;/p&gt;
+&lt;p&gt;&lt;iframe width=&quot;640&quot; height=&quot;360&quot; src=&quot;//www.youtube.com/embed/N6ccR1rn6x8?rel=0&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/p&gt;
+&lt;p&gt;Spheroid Cyclone for Android/iOS&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=811781964&amp;amp;mt=8&quot; target=&quot;_blank&quot;&gt;iTunes App Store&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://play.google.com/store/apps/details?id=com.alexboldit.cyclone&quot; target=&quot;_blank&quot;&gt;Google Play Store&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.amazon.com/dp/B00I7LST0M/ref=cm_sw_r_tw_dp_0BE9sb1CHJEET&quot; target=&quot;_blank&quot;&gt;Amazon App Store&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sat, 08 Feb 2014 08:27:58 -0800</pubDate>
+        <link>http://www.bold-it.com/ios/game/unity3d/spheroid-cyclone/</link>
+        <guid isPermaLink="true">http://www.bold-it.com/ios/game/unity3d/spheroid-cyclone/</guid>
+        
+        
+        <category>ios</category>
+        
+        <category>game</category>
+        
+        <category>unity3d</category>
+        
+      </item>
+    
+      <item>
+        <title>Tizen Game w/ Facebook React - ColoReactor</title>
+        <description>&lt;p&gt;&lt;a href=&quot;/medialibrary/2013-12-07-16.51.33.jpg&quot;&gt;&lt;img src=&quot;/medialibrary/2013-12-07-16.51.33.jpg&quot; alt=&quot;2013-12-07 16.51.33&quot; width=&quot;320px&quot; class=&quot;alignnone size-full wp-image-412&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Using Facebook React UI Library and Socket.io, I created a game for the web, then ported it to the Tizen OS, which was pretty straight forward.  If you&#39;ve set up a PhoneGap project or an Android application, Tizen won&#39;t be much different.&lt;/p&gt;
+&lt;p&gt;The ByMyApp Team organized a &lt;a href=&quot;http://www.flickr.com/photos/bemyapp/sets/72157638454298046&quot; title=&quot;Photos of the event&quot; target=&quot;_blank&quot;&gt;Tizen Devlab and Hackathon&lt;/a&gt; at the SURF Incubator from December 6-7.  I pitched the idea of a multiplayer reaction game to get people excited about the event.  The concept is simple, when the button&#39;s color is the same as the border, hit the button first.  The winner gets a point.  Every device is connected to the same game.&lt;/p&gt;
+&lt;p&gt;I teamed up with an amazing designer named Jojo who created a great interface for the game.  After a long night, the game was set up, and the second day was spent making it pretty.&lt;/p&gt;
+&lt;p&gt;The back end was Node.js using &lt;a href=&quot;http://socket.io/&quot; target=&quot;_blank&quot;&gt;Socket.io&lt;/a&gt; and hosted on Heroku.  The UI is updated using &lt;a href=&quot;http://facebook.github.io/react/&quot; target=&quot;_blank&quot;&gt;Facebook React&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Check out the source on &lt;a href=&quot;https://github.com/BoldBigflank/coloreact&quot; title=&quot;ColoReact&quot; target=&quot;_blank&quot;&gt;Github&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://coloreact.herokuapp.com&quot; target=&quot;_blank&quot;&gt;Play the Game&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The Tizen game won Runner up for the event.&lt;/p&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot; lang=&quot;en&quot;&gt;&lt;p&gt;Jojo Wang and &lt;a href=&quot;https://twitter.com/BoldBigflank&quot;&gt;@BoldBigflank&lt;/a&gt; won Runner Up with Coloreactor - sticky &amp;amp; fun multiplayer game. &lt;a href=&quot;https://twitter.com/search?q=%23FTW&amp;amp;src=hash&quot;&gt;#FTW&lt;/a&gt; &lt;a href=&quot;https://twitter.com/search?q=%23TizenSEA&amp;amp;src=hash&quot;&gt;#TizenSEA&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&amp;mdash; BeMyApp (@bemyapp) &lt;a href=&quot;https://twitter.com/bemyapp/statuses/409569373456592897&quot;&gt;December 8, 2013&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/p&gt;
+</description>
+        <pubDate>Tue, 31 Dec 2013 22:57:29 -0800</pubDate>
+        <link>http://www.bold-it.com/javascript/node.js/socket.io/game/tizen-game-w-facebook-react-coloreactor/</link>
+        <guid isPermaLink="true">http://www.bold-it.com/javascript/node.js/socket.io/game/tizen-game-w-facebook-react-coloreactor/</guid>
+        
+        
+        <category>javascript</category>
+        
+        <category>node.js</category>
+        
+        <category>socket.io</category>
+        
+        <category>game</category>
+        
+      </item>
+    
+      <item>
+        <title>Socket.io Multiplayer Game - Blknode</title>
+        <description>&lt;p&gt;&lt;a href=&quot;/medialibrary/Screen-Shot-2013-12-31-at-3.05.10-PM.png&quot;&gt;&lt;img src=&quot;/medialibrary/Screen-Shot-2013-12-31-at-3.05.10-PM.png&quot; width=&quot;320px&quot; alt=&quot;Blknode game screen&quot; class=&quot;alignleft size-full wp-image-417&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Using HTML5 Canvas, &lt;a href=&quot;http://socket.io&quot; target=&quot;_blank&quot;&gt;Socket.io&lt;/a&gt; and Node.js, my team created an online multiplayer Blokus clone.  The rules of the game are simple: on your turn, you must place a piece touching the corner of one of your other pieces, and the piece&#39;s faces must not touch the face of another of your own pieces.  The person with the most claimed area on the board at the end of the game is the winner.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/OpenAtMicrosoft&quot; target=&quot;_blank&quot;&gt;Microsoft&lt;/a&gt; hosted an open Node.js hackathon at The Garage over a Thursday/Friday in November.  We worked hard to get a working demo and nailed our presentation.  The team then worked to make it a viable candidate for the &lt;a href=&quot;https://github.com/github/game-off-2013&quot; target=&quot;_blank&quot;&gt;GitHub Game-Off 2013&lt;/a&gt;.  I&#39;ve gotten pretty good at making Socket.io Multiplayer games.&lt;/p&gt;
+&lt;p&gt;See the source on &lt;a href=&quot;https://github.com/BoldBigflank/blknode&quot; target=&quot;_blank&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://blknode.azurewebsites.net&quot; target=&quot;_blank&quot;&gt;Play the game&lt;/a&gt; on Azure Services.&lt;/p&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot; lang=&quot;en&quot;&gt;&lt;p&gt;RT &lt;a href=&quot;https://twitter.com/twilio&quot;&gt;@twilio&lt;/a&gt;: Demos about to start at the &lt;a href=&quot;https://twitter.com/OpenAtMicrosoft&quot;&gt;@openatmicrosoft&lt;/a&gt; &lt;a href=&quot;https://twitter.com/search?q=%23nodejshackathon&amp;amp;src=hash&quot;&gt;#nodejshackathon&lt;/a&gt;. &lt;a href=&quot;https://twitter.com/BoldBigflank&quot;&gt;@BoldBigflank&lt;/a&gt; is going to kick things off. &lt;a href=&quot;http://t.co/xMJZuaRoAw&quot;&gt;pic.twitter.com/xMJZuaRoAw&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&amp;mdash; Alex Swan (@BoldBigflank) &lt;a href=&quot;https://twitter.com/BoldBigflank/statuses/404070791051898880&quot;&gt;November 23, 2013&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sat, 30 Nov 2013 23:23:22 -0800</pubDate>
+        <link>http://www.bold-it.com/javascript/node.js/socket.io/game/socket-io-multiplayer-game-blknode/</link>
+        <guid isPermaLink="true">http://www.bold-it.com/javascript/node.js/socket.io/game/socket-io-multiplayer-game-blknode/</guid>
+        
+        
+        <category>javascript</category>
+        
+        <category>node.js</category>
+        
+        <category>socket.io</category>
+        
+        <category>game</category>
+        
+      </item>
+    
   </channel>
 </rss>

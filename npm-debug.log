@@ -1,0 +1,243 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', '-g', 'browser-perf' ]
+2 info using npm@1.4.9
+3 info using node@v0.10.28
+4 verbose cache add [ 'browser-perf', null ]
+5 verbose cache add name=undefined spec="browser-perf" args=["browser-perf",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'browser-perf',
+6 verbose parsed url   path: 'browser-perf',
+6 verbose parsed url   href: 'browser-perf' }
+7 silly lockFile d7eced5d-browser-perf browser-perf
+8 verbose lock browser-perf /Users/alex/.npm/d7eced5d-browser-perf.lock
+9 silly lockFile d7eced5d-browser-perf browser-perf
+10 silly lockFile d7eced5d-browser-perf browser-perf
+11 verbose addNamed [ 'browser-perf', '' ]
+12 verbose addNamed [ null, '*' ]
+13 silly lockFile ada01488-browser-perf browser-perf@
+14 verbose lock browser-perf@ /Users/alex/.npm/ada01488-browser-perf.lock
+15 silly addNameRange { name: 'browser-perf', range: '*', hasData: false }
+16 verbose url raw browser-perf
+17 verbose url resolving [ 'https://registry.npmjs.org/', './browser-perf' ]
+18 verbose url resolved https://registry.npmjs.org/browser-perf
+19 info trying registry request attempt 1 at 13:49:11
+20 http GET https://registry.npmjs.org/browser-perf
+21 http 200 https://registry.npmjs.org/browser-perf
+22 silly registry.get cb [ 200,
+22 silly registry.get   { date: 'Tue, 27 Jan 2015 21:49:12 GMT',
+22 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+22 silly registry.get     etag: '"9295YS9M6S1QIMNRRKHW71LTR"',
+22 silly registry.get     'content-type': 'application/json',
+22 silly registry.get     'cache-control': 'max-age=60',
+22 silly registry.get     'content-length': '59951',
+22 silly registry.get     'accept-ranges': 'bytes',
+22 silly registry.get     via: '1.1 varnish',
+22 silly registry.get     age: '0',
+22 silly registry.get     'x-served-by': 'cache-sjc3134-SJC',
+22 silly registry.get     'x-cache': 'MISS',
+22 silly registry.get     'x-cache-hits': '0',
+22 silly registry.get     'x-timer': 'S1422395352.739059,VS0,VE93',
+22 silly registry.get     vary: 'Accept',
+22 silly registry.get     'keep-alive': 'timeout=10, max=50',
+22 silly registry.get     connection: 'Keep-Alive' } ]
+23 silly addNameRange number 2 { name: 'browser-perf', range: '*', hasData: true }
+24 silly addNameRange versions [ 'browser-perf',
+24 silly addNameRange   [ '0.0.1',
+24 silly addNameRange     '0.0.2',
+24 silly addNameRange     '0.0.3',
+24 silly addNameRange     '0.0.4',
+24 silly addNameRange     '0.0.5',
+24 silly addNameRange     '0.0.6',
+24 silly addNameRange     '0.0.7',
+24 silly addNameRange     '0.0.8',
+24 silly addNameRange     '0.0.9',
+24 silly addNameRange     '0.0.10',
+24 silly addNameRange     '0.0.11',
+24 silly addNameRange     '0.1.0',
+24 silly addNameRange     '0.1.1',
+24 silly addNameRange     '0.1.2',
+24 silly addNameRange     '0.1.3',
+24 silly addNameRange     '0.1.4',
+24 silly addNameRange     '0.1.5',
+24 silly addNameRange     '0.1.6',
+24 silly addNameRange     '0.1.7',
+24 silly addNameRange     '0.1.8',
+24 silly addNameRange     '0.1.9',
+24 silly addNameRange     '0.1.10',
+24 silly addNameRange     '0.1.11',
+24 silly addNameRange     '0.1.12',
+24 silly addNameRange     '0.1.13',
+24 silly addNameRange     '0.1.14',
+24 silly addNameRange     '0.1.15',
+24 silly addNameRange     '0.1.16',
+24 silly addNameRange     '0.1.17',
+24 silly addNameRange     '0.1.18',
+24 silly addNameRange     '0.1.19',
+24 silly addNameRange     '0.1.20',
+24 silly addNameRange     '0.1.21',
+24 silly addNameRange     '1.0.1',
+24 silly addNameRange     '1.0.2',
+24 silly addNameRange     '1.1.0',
+24 silly addNameRange     '1.1.1',
+24 silly addNameRange     '1.1.2',
+24 silly addNameRange     '1.2.1' ] ]
+25 verbose addNamed [ 'browser-perf', '1.2.1' ]
+26 verbose addNamed [ '1.2.1', '1.2.1' ]
+27 silly lockFile 7b25d21d-browser-perf-1-2-1 browser-perf@1.2.1
+28 verbose lock browser-perf@1.2.1 /Users/alex/.npm/7b25d21d-browser-perf-1-2-1.lock
+29 silly lockFile da0ab25d-wser-perf-browser-perf-1-2-1-tgz https://registry.npmjs.org/browser-perf/-/browser-perf-1.2.1.tgz
+30 verbose lock https://registry.npmjs.org/browser-perf/-/browser-perf-1.2.1.tgz /Users/alex/.npm/da0ab25d-wser-perf-browser-perf-1-2-1-tgz.lock
+31 verbose addRemoteTarball [ 'https://registry.npmjs.org/browser-perf/-/browser-perf-1.2.1.tgz',
+31 verbose addRemoteTarball   'c4bb0b8134183d36cabbe332d664fafe8a242f91' ]
+32 info retry fetch attempt 1 at 13:49:11
+33 verbose fetch to= /var/folders/tb/ltd72sv93rn0nsp0j0hdlldh0000gn/T/npm-45817-Ra71JVFU/1422395351782-0.25332314101979136/tmp.tgz
+34 http GET https://registry.npmjs.org/browser-perf/-/browser-perf-1.2.1.tgz
+35 http 200 https://registry.npmjs.org/browser-perf/-/browser-perf-1.2.1.tgz
+36 verbose tar unpack /var/folders/tb/ltd72sv93rn0nsp0j0hdlldh0000gn/T/npm-45817-Ra71JVFU/1422395351782-0.25332314101979136/tmp.tgz
+37 silly lockFile 193d221f-x-npm-browser-perf-1-2-1-package tar:///Users/alex/.npm/browser-perf/1.2.1/package
+38 verbose lock tar:///Users/alex/.npm/browser-perf/1.2.1/package /Users/alex/.npm/193d221f-x-npm-browser-perf-1-2-1-package.lock
+39 silly lockFile 59181f05-1782-0-25332314101979136-tmp-tgz tar:///var/folders/tb/ltd72sv93rn0nsp0j0hdlldh0000gn/T/npm-45817-Ra71JVFU/1422395351782-0.25332314101979136/tmp.tgz
+40 verbose lock tar:///var/folders/tb/ltd72sv93rn0nsp0j0hdlldh0000gn/T/npm-45817-Ra71JVFU/1422395351782-0.25332314101979136/tmp.tgz /Users/alex/.npm/59181f05-1782-0-25332314101979136-tmp-tgz.lock
+41 silly gunzTarPerm modes [ '755', '644' ]
+42 silly gunzTarPerm extractEntry package.json
+43 silly gunzTarPerm extractEntry .npmignore
+44 silly gunzTarPerm extractEntry README.md
+45 silly gunzTarPerm extractEntry docs/index.js
+46 silly gunzTarPerm extractEntry docs/ChromeTracingMetrics.json
+47 silly gunzTarPerm extractEntry docs/NetworkTimings.json
+48 silly gunzTarPerm extractEntry docs/RafRenderingStats.json
+49 silly gunzTarPerm extractEntry docs/RuntimePerfMetrics.json
+50 silly gunzTarPerm extractEntry docs/TimelineMetrics.json
+51 silly gunzTarPerm extractEntry lib/cli.js
+52 silly gunzTarPerm extractEntry lib/helpers.js
+53 silly gunzTarPerm extractEntry lib/index.js
+54 silly gunzTarPerm extractEntry lib/options.js
+55 silly gunzTarPerm extractEntry lib/runner.js
+56 silly gunzTarPerm extractEntry lib/actions/index.js
+57 silly gunzTarPerm extractEntry lib/actions/loginAction.js
+58 silly gunzTarPerm extractEntry lib/actions/scrollAction.js
+59 silly gunzTarPerm extractEntry lib/actions/wait.js
+60 silly gunzTarPerm extractEntry lib/actions/page_scripts/chrome_scroll.js
+61 silly gunzTarPerm extractEntry lib/actions/page_scripts/gesture_common.js
+62 silly gunzTarPerm extractEntry lib/actions/page_scripts/raf_scroll.js
+63 silly gunzTarPerm extractEntry lib/metrics/BaseMetrics.js
+64 silly gunzTarPerm extractEntry lib/metrics/ChromeTracingMetrics.js
+65 silly gunzTarPerm extractEntry lib/metrics/NetworkTimings.js
+66 silly gunzTarPerm extractEntry lib/metrics/RafRenderingStats.js
+67 silly gunzTarPerm extractEntry lib/metrics/SampleMetric.js
+68 silly gunzTarPerm extractEntry lib/metrics/TimelineMetrics.js
+69 silly gunzTarPerm extractEntry lib/metrics/index.js
+70 silly gunzTarPerm extractEntry lib/metrics/util/RenderingStats.js
+71 silly gunzTarPerm extractEntry lib/metrics/util/RuntimePerfMetrics.js
+72 silly gunzTarPerm extractEntry lib/metrics/util/StatData.js
+73 silly gunzTarPerm extractEntry lib/metrics/util/statistics.js
+74 silly gunzTarPerm extractEntry lib/probes/AndroidTracingProbe.js
+75 silly gunzTarPerm extractEntry lib/probes/ChromeTracingProbe.js
+76 silly gunzTarPerm extractEntry lib/probes/NavTimingProbe.js
+77 silly gunzTarPerm extractEntry lib/probes/PerfLogProbe.js
+78 silly gunzTarPerm extractEntry lib/probes/RafBenchmarkingProbe.js
+79 silly gunzTarPerm extractEntry lib/probes/SampleProbe.js
+80 silly gunzTarPerm extractEntry lib/probes/index.js
+81 silly gunzTarPerm extractEntry license.txt
+82 silly gunzTarPerm extractEntry .travis.yml
+83 silly lockFile 193d221f-x-npm-browser-perf-1-2-1-package tar:///Users/alex/.npm/browser-perf/1.2.1/package
+84 silly lockFile 193d221f-x-npm-browser-perf-1-2-1-package tar:///Users/alex/.npm/browser-perf/1.2.1/package
+85 silly lockFile 59181f05-1782-0-25332314101979136-tmp-tgz tar:///var/folders/tb/ltd72sv93rn0nsp0j0hdlldh0000gn/T/npm-45817-Ra71JVFU/1422395351782-0.25332314101979136/tmp.tgz
+86 silly lockFile 59181f05-1782-0-25332314101979136-tmp-tgz tar:///var/folders/tb/ltd72sv93rn0nsp0j0hdlldh0000gn/T/npm-45817-Ra71JVFU/1422395351782-0.25332314101979136/tmp.tgz
+87 silly lockFile da0ab25d-wser-perf-browser-perf-1-2-1-tgz https://registry.npmjs.org/browser-perf/-/browser-perf-1.2.1.tgz
+88 silly lockFile da0ab25d-wser-perf-browser-perf-1-2-1-tgz https://registry.npmjs.org/browser-perf/-/browser-perf-1.2.1.tgz
+89 silly lockFile 7b25d21d-browser-perf-1-2-1 browser-perf@1.2.1
+90 silly lockFile 7b25d21d-browser-perf-1-2-1 browser-perf@1.2.1
+91 silly lockFile ada01488-browser-perf browser-perf@
+92 silly lockFile ada01488-browser-perf browser-perf@
+93 silly resolved [ { name: 'browser-perf',
+93 silly resolved     version: '1.2.1',
+93 silly resolved     description: 'Measure browser rendering performance metrics',
+93 silly resolved     main: 'lib/index.js',
+93 silly resolved     scripts: { test: 'mocha --recursive --require=./test/test.helper.js ./test' },
+93 silly resolved     bin: { 'browser-perf': 'lib/cli.js' },
+93 silly resolved     author: { name: 'Parashuram' },
+93 silly resolved     license: 'BSD-2-Clause',
+93 silly resolved     dependencies:
+93 silly resolved      { byline: '^4.1.1',
+93 silly resolved        'cli-table': '~0.3.1',
+93 silly resolved        commander: '^2.6.0',
+93 silly resolved        debug: '^2.1.1',
+93 silly resolved        glob: '^4.3.5',
+93 silly resolved        jsmin: '~1.0.1',
+93 silly resolved        q: '^1.1.2',
+93 silly resolved        wd: '^0.3.11' },
+93 silly resolved     devDependencies:
+93 silly resolved      { chai: '~1.10.0',
+93 silly resolved        'chai-as-promised': '^4.1.1',
+93 silly resolved        mocha: '^2.1.0',
+93 silly resolved        sinon: '^1.12.2' },
+93 silly resolved     directories: { test: 'test' },
+93 silly resolved     repository:
+93 silly resolved      { type: 'git',
+93 silly resolved        url: 'git://github.com/axemclion/browser-perf.git' },
+93 silly resolved     keywords:
+93 silly resolved      [ 'browser-perf',
+93 silly resolved        'rendering',
+93 silly resolved        'telemetry',
+93 silly resolved        'chromium',
+93 silly resolved        'performance',
+93 silly resolved        'high performance web sites',
+93 silly resolved        'metrics',
+93 silly resolved        'monitoring',
+93 silly resolved        'web development',
+93 silly resolved        'webperf' ],
+93 silly resolved     bugs: { url: 'https://github.com/axemclion/browser-perf/issues' },
+93 silly resolved     readme: '# browser-perf\r\n\r\n- Is a NodeJS based tool\r\n- For measuring browser performance metrics (like frame rates, expensive layouts, paints, styles, etc.) \r\n- For Web pages, Cordova/Phonegap and other Hybrid applications. \r\n- Metrics are measured while mimicking real user interactions - clicking buttons, typing content, etc.  \r\n- Tool collects the metrics from sources like `about:tracing`, Chrome Devtools timeline, IE UI Responsiveness tab, Xperf, etc. \r\n- Monitor this information regularly by integrating the tool with continuous integration systems. \r\n\r\n## Documentation \r\nRead more on [why browser-perf here](https://github.com/axemclion/browser-perf/wiki#why-browser-perf-).\r\n\r\nPlease see the [wiki pages](https://github.com/axemclion/browser-perf/wiki/_pages) for more information. \r\nYou can find information about supported browsers, [getting started](https://github.com/axemclion/browser-perf/wiki/Setup-Instructions), [command line usage](https://github.com/axemclion/browser-perf/wiki/Command-Line-Usage), reference for the [Node API](https://github.com/axemclion/browser-perf/wiki/Node-Module---API) etc. \r\n\r\n## Usage\r\n\r\n### Command line\r\n\r\nInstall the tool using `npm install -g browser-perf` and then run \r\n\r\n```\r\n$ browser-perf http://yourwebsite.com --browsers=chrome,firefox --selenium=ondemand.saucelabs.com --username=username --accesskey=accesskey\r\n```\r\n\r\n- Replace username and access key with the [saucelabs.com](http://saucelabs.com) username and accesskey\r\n- If you have [Selenium](http://www.seleniumhq.org/download/) set up, you could substitute `ondemand.saucelabs.com` with `localhost:4444/wd/hub`\r\n- You can also use [BrowserStack](http://browserstack.com) credentials and substitute `ondemand.saucelabs.com` with `hub.browserstack.com`\r\n\r\nSee the [wiki page](https://github.com/axemclion/browser-perf/wiki/Command-Line-Usage) for an extensive list of command line options and more usage scenarios.\r\n\r\nHere is a video of the command line usage\r\n[![Demo of browser-perf](https://img.youtube.com/vi/0HmAFrUCIUI/0.jpg "Demo of browser-perf")](https://www.youtube.com/watch?v=0HmAFrUCIUI)\r\n\r\n## Node Module\r\n\r\nbrowser-perf is also a node module and has the following API\r\n\r\n```javascript\r\n\r\nvar browserPerf = require(\'browser-perf\');\r\nbrowserPerf(\'/*URL of the page to be tested*/\', function(err, res) {\r\n\t// res - array of objects. Metrics for this URL\r\n\tif (err) {\r\n\t\tconsole.log(\'ERROR: \' + err);\r\n\t} else {\r\n\t\tconsole.log(res);\r\n\t}\r\n}, {\r\n\tselenium: \'http://localhost:4444/wd/hub\',\r\n\tbrowsers: [\'chrome\', \'firefox\']\r\n\tusername: SAUCE_USERNAME // if running tests on the cloud  \r\n});\r\n\r\n```\r\nSee the [API wiki page](https://github.com/axemclion/browser-perf/wiki/Node-Module---API) for more details on configuring. \r\nInstructions on using it for Cordova apps is also on the [wiki](https://github.com/axemclion/browser-perf/wiki/Setup#wiki-cordova-applications)\r\n\r\n## Scenario\r\n- Websites can become slow\r\n  - over time as more CSS and Javascript is added\r\n  - due to a single commit that adds expensive CSS (like gradients) \r\n- We use tools in [Chrome](https://developers.google.com/chrome-developer-tools/docs/timeline) or [Internet Explorer](http://msdn.microsoft.com/en-us/library/ie/dn255009%28v=vs.85%29.asp) only when the site is too slow. \r\n- Tools like YSlow and Page Speed are great, but will it not be better if the are a part of continuous integration?\r\n- Tools like this(http://npmjs.org/package/browser-perf) and [Phantomas](https://github.com/macbre/phantomas) can fill the gap to monitor site performance every time a checkin is performed. \r\n\r\n## License\r\nLicensed under BSD-2 Clause. See License.txt for more details \r\n\r\n## Contact\r\nPlease ping [me](http://twitter.com/nparashuram) if you would need help setting this up. \r\n',
+93 silly resolved     readmeFilename: 'README.md',
+93 silly resolved     homepage: 'https://github.com/axemclion/browser-perf',
+93 silly resolved     _id: 'browser-perf@1.2.1',
+93 silly resolved     _shasum: 'c4bb0b8134183d36cabbe332d664fafe8a242f91',
+93 silly resolved     _from: 'browser-perf@',
+93 silly resolved     _resolved: 'https://registry.npmjs.org/browser-perf/-/browser-perf-1.2.1.tgz' } ]
+94 info install browser-perf@1.2.1 into /usr/local/lib
+95 info installOne browser-perf@1.2.1
+96 info /usr/local/lib/node_modules/browser-perf unbuild
+97 verbose tar unpack /Users/alex/.npm/browser-perf/1.2.1/package.tgz
+98 silly lockFile 4872e949-al-lib-node-modules-browser-perf tar:///usr/local/lib/node_modules/browser-perf
+99 verbose lock tar:///usr/local/lib/node_modules/browser-perf /Users/alex/.npm/4872e949-al-lib-node-modules-browser-perf.lock
+100 silly lockFile 6ef2065d-m-browser-perf-1-2-1-package-tgz tar:///Users/alex/.npm/browser-perf/1.2.1/package.tgz
+101 verbose lock tar:///Users/alex/.npm/browser-perf/1.2.1/package.tgz /Users/alex/.npm/6ef2065d-m-browser-perf-1-2-1-package-tgz.lock
+102 silly gunzTarPerm modes [ '755', '644' ]
+103 error Error: EACCES, mkdir '/usr/local/lib/node_modules/browser-perf'
+103 error  { [Error: EACCES, mkdir '/usr/local/lib/node_modules/browser-perf']
+103 error   errno: 3,
+103 error   code: 'EACCES',
+103 error   path: '/usr/local/lib/node_modules/browser-perf',
+103 error   fstream_type: 'Directory',
+103 error   fstream_path: '/usr/local/lib/node_modules/browser-perf',
+103 error   fstream_class: 'DirWriter',
+103 error   fstream_stack:
+103 error    [ '/usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
+103 error      '/usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:37:53',
+103 error      'Object.oncomplete (fs.js:107:15)' ] }
+104 error Please try running this command again as root/Administrator.
+105 error System Darwin 13.4.0
+106 error command "node" "/usr/local/bin/npm" "install" "-g" "browser-perf"
+107 error cwd /Users/alex/boldbigflank.github.io-jekyll
+108 error node -v v0.10.28
+109 error npm -v 1.4.9
+110 error path /usr/local/lib/node_modules/browser-perf
+111 error fstream_path /usr/local/lib/node_modules/browser-perf
+112 error fstream_type Directory
+113 error fstream_class DirWriter
+114 error code EACCES
+115 error errno 3
+116 error stack Error: EACCES, mkdir '/usr/local/lib/node_modules/browser-perf'
+117 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
+117 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:37:53
+117 error fstream_stack Object.oncomplete (fs.js:107:15)
+118 verbose exit [ 3, true ]
